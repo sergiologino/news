@@ -6,15 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class Owner {
+public class User {
 
     private Long id;
 
     private String name;
 
-    private List<Comment> comments = new ArrayList<>();
+    private String password;
 
-    public void addComment(Comment comment){
-        comments.add(comment);
-    }
 }

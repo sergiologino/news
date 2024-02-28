@@ -2,7 +2,6 @@ package ru.altacod.news.news.model;
 
 import lombok.Data;
 
-import javax.xml.stream.events.Comment;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,7 +15,7 @@ public class News {
 
     private String description;
 
-    private Long ownerId;
+    private Long userId;
 
     private List<Comment> comments = new ArrayList<>();
 
