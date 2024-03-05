@@ -62,6 +62,11 @@ public class InMemoryCommentRepository implements CommentRepository {
     }
 
     @Override
+    public Long getUserId(Comment comment) {
+        return comment.getUserId();
+    }
+
+    @Override
     public Comment update(Comment comment) {
 
         Long commentId=comment.getId();

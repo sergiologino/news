@@ -13,6 +13,8 @@ public interface CommentRepository {
 
         Comment save(Comment comment);
 
+        Long getUserId(Comment comment);
+
         Comment update(Comment comment);
 
         void deleteById(Long id);
