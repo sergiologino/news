@@ -44,7 +44,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public void deleteById(Long id) {
         Optional<Comment> currentComment=commentRepository.findById(id);
-        Long currentUserId = currentComment.getUserId();
+        Long currentUserId = currentComment.get().getUserId();
         checkForUpdate(id, currentUserId);
         commentRepository.deleteById(id);
 

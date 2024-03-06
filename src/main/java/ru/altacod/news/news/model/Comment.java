@@ -21,7 +21,7 @@ public class Comment {
 
     private Instant updateAt;
 
-    private News news;
+    private Long newsId;
 
 }
 
