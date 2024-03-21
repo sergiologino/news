@@ -15,5 +15,7 @@ public class NewsResponce {
 
     private Long userId;
 
+    private Long categoryId;
+
     private List<CommentResponce> comments = new ArrayList<>();
 }

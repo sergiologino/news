@@ -17,6 +17,8 @@ public class News {
 
     private Long userId;
 
+    private Long categoryId;
+
     private List<Comment> comments = new ArrayList<>();
 
     public void addComment(Comment comment){
