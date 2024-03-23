@@ -3,11 +3,10 @@ package ru.altacod.news.news.mapper.v1;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.altacod.news.news.api.model.CommentListResponse;
-import ru.altacod.news.news.api.model.CommentResponce;
+import ru.altacod.news.news.api.model.CommentResponse;
 import ru.altacod.news.news.api.model.UpsertCommentRequest;
 import ru.altacod.news.news.model.Comment;
 import ru.altacod.news.news.service.NewsService;
-import ru.altacod.news.news.service.impl.NewsServiceImpl;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,7 +18,7 @@ public class CommentMapper {
     private final NewsMapper newsMapper;
     private final NewsService newsServiceImpl;
 
-    public Comment requestToComment(UpsertCommentRequest request){
+    public Comment requestToComment(UpsertCommentRequest request) {
         Comment comment = new Comment();
         comment.setNews(request.getNews());
         comment.setContent(request.getContent());
@@ -27,28 +26,29 @@ public class CommentMapper {
 
         return comment;
     }
-    public Comment requestToComment(Long commentId, UpsertCommentRequest request){
+
+    public Comment requestToComment(Long commentId, UpsertCommentRequest request) {
 
         Comment comment = requestToComment(request);
         comment.setId(commentId);
         return comment;
     }
 
-    public CommentResponce commentToResponce(Comment comment){
-        CommentResponce commentResponce = new CommentResponce();
-        commentResponce.setId(comment.getId());
-        commentResponce.setContent(comment.getContent());
-        commentResponce.setUserId(comment.getUserId());
-        return commentResponce;
+    public CommentResponse commentToResponse(Comment comment) {
+        CommentResponse commentResponse = new CommentResponse();
+        commentResponse.setId(comment.getId());
+        commentResponse.setContent(comment.getContent());
+        commentResponse.setUserId(comment.getUserId());
+        return commentResponse;
     }
 
-    public List<CommentResponce> commentListToResponceList(List<Comment> comments){
-        return comments.stream().map(this::commentToResponce).collect(Collectors.toList());
+    public List<CommentResponse> commentListToResponseList(List<Comment> comments) {
+        return comments.stream().map(this::commentToResponse).collect(Collectors.toList());
     }
 
-    public CommentListResponse commentListResponce(List<Comment> comments){
+    public CommentListResponse commentListResponce(List<Comment> comments) {
         CommentListResponse response = new CommentListResponse();
-        response.setComments(commentListToResponceList(comments));
+        response.setComments(commentListToResponseList(comments));
         return response;
     }
 }

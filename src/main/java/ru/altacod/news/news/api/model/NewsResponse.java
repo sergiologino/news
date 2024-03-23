@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class NewsResponce {
+public class NewsResponse {
     private Long id;
 
     private String name;
@@ -17,5 +17,5 @@ public class NewsResponce {
 
     private Long categoryId;
 
-    private List<CommentResponce> comments = new ArrayList<>();
+    private List<CommentResponse> comments = new ArrayList<>();
 }

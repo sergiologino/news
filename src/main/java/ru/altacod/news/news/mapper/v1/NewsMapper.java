@@ -2,12 +2,10 @@ package ru.altacod.news.news.mapper.v1;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import ru.altacod.news.news.api.model.NewsListResponce;
-import ru.altacod.news.news.api.model.NewsResponce;
+import ru.altacod.news.news.api.model.NewsListResponse;
+import ru.altacod.news.news.api.model.NewsResponse;
 import ru.altacod.news.news.api.model.UpsertNewsRequest;
 import ru.altacod.news.news.model.News;
-import ru.altacod.news.news.service.CategoryService;
-import ru.altacod.news.news.service.UserService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,8 +16,8 @@ public class NewsMapper {
   //  private final UserService userService;
   //  private final CategoryService categoryService;
 
-    public News requestToNews(UpsertNewsRequest request){
-        News news=new News();
+    public News requestToNews(UpsertNewsRequest request) {
+        News news = new News();
         news.setCategoryId(request.getCategoryId());
         news.setDescription(request.getDescription());
         news.setName(request.getName());
@@ -27,31 +25,33 @@ public class NewsMapper {
         return news;
     }
 
-    public News requestToNews(Long newsId, UpsertNewsRequest request){
-        News news= requestToNews(request);
+    public News requestToNews(Long newsId, UpsertNewsRequest request) {
+        News news = requestToNews(request);
         news.setId(newsId);
         return news;
     }
 
-    public NewsResponce newsToResponce(News news){
-        NewsResponce newsResponce = new NewsResponce();
-        newsResponce.setId(news.getId());
-        newsResponce.setCategoryId(news.getCategoryId());
-        newsResponce.setName(news.getName());
-        newsResponce.setDescription(news.getDescription());
-        newsResponce.setUserId(news.getUserId());
+    public NewsResponse newsToResponse(News news) {
+        NewsResponse newsResponse = new NewsResponse();
+        newsResponse.setId(news.getId());
+        newsResponse.setCategoryId(news.getCategoryId());
+        newsResponse.setName(news.getName());
+        newsResponse.setDescription(news.getDescription());
+        newsResponse.setUserId(news.getUserId());
 
-        return newsResponce;
+        return newsResponse;
     }
-    public List<NewsResponce> newsListToResponceList(List<News> newsList){
+
+    public List<NewsResponse> newsListToResponceList(List<News> newsList) {
         return newsList.stream()
-                .map(this::newsToResponce)
+                .map(this::newsToResponse)
                 .collect(Collectors.toList());
     }
-    public NewsListResponce newsListToNewsListResponce(List<News> newsList){
-        NewsListResponce responce=new NewsListResponce();
-        responce.setNews(newsListToResponceList(newsList));
 
-        return responce;
+    public NewsListResponse newsListToNewsListResponse(List<News> newsList) {
+        NewsListResponse response = new NewsListResponse();
+        response.setNews(newsListToResponceList(newsList));
+
+        return response;
     }
 }

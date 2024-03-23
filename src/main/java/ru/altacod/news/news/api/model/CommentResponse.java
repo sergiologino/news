@@ -3,7 +3,7 @@ package ru.altacod.news.news.api.model;
 import lombok.Data;
 
 @Data
-public class CommentResponce {
+public class CommentResponse {
     private Long id;
 
     private String content;

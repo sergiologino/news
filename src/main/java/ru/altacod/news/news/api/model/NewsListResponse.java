@@ -6,6 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class NewsListResponce {
-    private List<NewsResponce> news =new ArrayList<>();
+public class NewsListResponse {
+    private List<NewsResponse> news = new ArrayList<>();
 }
