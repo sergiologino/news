@@ -1,5 +1,6 @@
-package ru.altacod.news.news.api.v1;
+package ru.altacod.news.news.api.controller.v1;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +33,7 @@ public class NewsController {
     }
 
     @PostMapping
-    public ResponseEntity<NewsResponse> create(@RequestBody UpsertNewsRequest request) {
+    public ResponseEntity<NewsResponse> create(@RequestBody @Valid UpsertNewsRequest request) {
         News newNews = newsService.save(newsMapper.requestToNews(request));
 
         return ResponseEntity.status(HttpStatus.CREATED)

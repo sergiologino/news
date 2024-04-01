@@ -45,10 +45,10 @@ public class InMemoryCommentRepository implements CommentRepository {
     @Override
     public Comment save(Comment comment) {
         Long commentId = currentId.getAndIncrement();
-        Long newsId = comment.getNews().getId();
+        Long newsId = comment.getNewsId();
         News news = newsRepository.findById(newsId)
-                        .orElseThrow(()-> new EntityNotFoundException("Новость не найдена"));
-        comment.setNews(news);
+                .orElseThrow(() -> new EntityNotFoundException("Новость не найдена"));
+        comment.setNewsId(newsId);
         comment.setId(commentId);
         Instant now = Instant.now();
         comment.setCreateAt(now);

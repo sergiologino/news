@@ -26,7 +26,7 @@ public class UserMapper {
         return user;
     }
 
-    public UserResponse userToResponce(User user) {
+    public UserResponse userToResponse(User user) {
         UserResponse userResponse = new UserResponse();
         userResponse.setId(user.getId());
         userResponse.setName(user.getName());
@@ -35,7 +35,7 @@ public class UserMapper {
     }
 
     public List<UserResponse> userListToResponceList(List<User> users) {
-        return users.stream().map(this::userToResponce).collect(Collectors.toList());
+        return users.stream().map(this::userToResponse).collect(Collectors.toList());
 
     }
 

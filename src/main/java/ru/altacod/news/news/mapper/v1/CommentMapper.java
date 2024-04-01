@@ -20,7 +20,7 @@ public class CommentMapper {
 
     public Comment requestToComment(UpsertCommentRequest request) {
         Comment comment = new Comment();
-        comment.setNews(request.getNews());
+        comment.setNewsId(request.getNewsId());
         comment.setContent(request.getContent());
         comment.setUserId(request.getUserId());
 

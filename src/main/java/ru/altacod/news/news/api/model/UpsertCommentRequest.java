@@ -1,13 +1,17 @@
 package ru.altacod.news.news.api.model;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
-import ru.altacod.news.news.model.News;
 
 @Data
 public class UpsertCommentRequest {
+
+    @NotBlank(message = "Код пользователя не может быть пустой!")
     private Long userId;
 
+    @NotBlank(message = "Комментарий не может быть пустой!")
     private String content;
 
-    private News news;
+    @NotBlank(message = "Код новости не может быть пустой!")
+    private Long newsId;
 }

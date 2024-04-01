@@ -1,4 +1,4 @@
-package ru.altacod.news.news.api.v1;
+package ru.altacod.news.news.api.controller.v1;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -25,19 +25,19 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<UserResponse> findById(@PathVariable Long id) {
-        return ResponseEntity.ok(userMapper.userToResponce(userService.findById(id)));
+        return ResponseEntity.ok(userMapper.userToResponse(userService.findById(id)));
     }
 
     @PostMapping
     public ResponseEntity<UserResponse> create(@RequestBody UpsertUserRequest request) {
         User newUser = userService.save(userMapper.requestToUser(request));
-        return ResponseEntity.status(HttpStatus.CREATED).body(userMapper.userToResponce(newUser));
+        return ResponseEntity.status(HttpStatus.CREATED).body(userMapper.userToResponse(newUser));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<UserResponse> update(@PathVariable("id") Long userId,
                                                @RequestBody UpsertUserRequest request) {
         User updatedUser = userService.update(userMapper.requestToUser(userId, request));
-        return ResponseEntity.ok(userMapper.userToResponce(updatedUser));
+        return ResponseEntity.ok(userMapper.userToResponse(updatedUser));
     }
 }

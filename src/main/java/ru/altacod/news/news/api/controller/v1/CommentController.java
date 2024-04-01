@@ -1,4 +1,4 @@
-package ru.altacod.news.news.api.v1;
+package ru.altacod.news.news.api.controller.v1;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
