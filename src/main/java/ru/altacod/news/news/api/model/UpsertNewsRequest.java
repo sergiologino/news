@@ -1,7 +1,7 @@
 package ru.altacod.news.news.api.model;
 
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,15 +11,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UpsertNewsRequest {
 
-    @NotBlank(message = "Пользователь не может быть пустой!")
-    private Long userId;
+ @NotNull(message = "Пользователь не может быть пустой!")
+ private Long userId;
 
-    @NotBlank(message = "Новость не может быть пустой!")
-    private String description;
+ @NotNull(message = "Новость должна относиться к какой-либо категории! ")
+ private Long categoryId;
 
-    @NotBlank(message = "Новость должна относиться к какой-либо категории! ")
-    private Long categoryId;
+ @NotNull(message = "У новости должен быть заголовок! ")
+ private String name;
 
-    @NotBlank(message = "У новости должен быть заголовок! ")
-    private String name;
+ @NotNull(message = "Текст новости не может быть пустой!")
+ private String description;
+
+
 }

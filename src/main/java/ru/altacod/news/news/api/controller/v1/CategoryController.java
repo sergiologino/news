@@ -1,5 +1,6 @@
 package ru.altacod.news.news.api.controller.v1;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import ru.altacod.news.news.model.Category;
 import ru.altacod.news.news.service.CategoryService;
 
 @RestController
+@Tag(name = "2. Категории")
 @RequestMapping("api/v1/category")
 @RequiredArgsConstructor
 public class CategoryController {

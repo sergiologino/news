@@ -1,5 +1,6 @@
 package ru.altacod.news.news.api.controller.v1;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import ru.altacod.news.news.model.Comment;
 import ru.altacod.news.news.service.CommentService;
 
 @RestController
+@Tag(name = "4. Комментарии")
 @RequestMapping("api/v1/comment")
 @RequiredArgsConstructor
 public class CommentController {

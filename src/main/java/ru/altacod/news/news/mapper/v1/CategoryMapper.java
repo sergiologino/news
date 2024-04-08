@@ -17,7 +17,6 @@ public class CategoryMapper {
 
     public Category requestToCategory(UpsertCategoryRequest request) {
         Category category = new Category();
-        category.setId(request.getId());
         category.setName(request.getName());
         return category;
     }
