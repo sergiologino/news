@@ -4,18 +4,22 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.altacod.news.news.exception.EntityNotFoundException;
 import ru.altacod.news.news.model.Comment;
-import ru.altacod.news.news.repository.CommentRepository;
+import ru.altacod.news.news.model.News;
+import ru.altacod.news.news.repository.DbCommentRepository;
 import ru.altacod.news.news.service.CommentService;
+import ru.altacod.news.news.service.NewsService;
+import ru.altacod.news.news.utils.BeanUtils;
 
 import java.text.MessageFormat;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class CommentServiceImpl implements CommentService {
+public class DbCommentService implements CommentService {
 
-    private final CommentRepository commentRepository;
+    private final DbCommentRepository commentRepository;
+
+    private final NewsService dbNewsService;
 
     @Override
     public List<Comment> findAll() {
@@ -25,32 +29,38 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Comment findById(Long id) {
         return commentRepository.findById(id)
-                .orElseThrow(()->new EntityNotFoundException(MessageFormat.format("Комментарий с ID {id} не найден",id)));
+                .orElseThrow(() -> new EntityNotFoundException(MessageFormat.format(
+                        "Комментарий с ID {0} не найден", id
+                )));
     }
 
     @Override
     public Comment save(Comment comment) {
+        News news = dbNewsService.findById(comment.getNews().getId());
+        comment.setNews(news);
         return commentRepository.save(comment);
+
     }
 
     @Override
     public Comment update(Comment comment) {
         checkForUpdate(comment.getId(), comment.getUserId());
-        return commentRepository.update(comment);
+        News news = dbNewsService.findById(comment.getNews().getId());
+        Comment existingComment = findById(comment.getId());
+        BeanUtils.copyNonNullProperties(comment, existingComment);
+        existingComment.setNews(news);
+        return commentRepository.save(existingComment);
     }
 
     @Override
     public void deleteById(Long id) {
-        Optional<Comment> currentComment=commentRepository.findById(id);
-        Long currentUserId = currentComment.get().getUserId();
-        checkForUpdate(id, currentUserId);
         commentRepository.deleteById(id);
 
     }
 
     @Override
     public void deleteByIds(List<Long> ids) {
-        commentRepository.deleteByIdIn(ids);
-    }
+        commentRepository.deleteAllById(ids);
 
+    }
 }
