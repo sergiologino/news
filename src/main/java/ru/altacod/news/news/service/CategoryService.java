@@ -1,7 +1,6 @@
 package ru.altacod.news.news.service;
 
 import ru.altacod.news.news.model.Category;
-import ru.altacod.news.news.model.Comment;
 
 import java.util.List;
 
