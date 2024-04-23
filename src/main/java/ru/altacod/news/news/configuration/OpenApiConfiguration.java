@@ -19,12 +19,12 @@ public class OpenApiConfiguration {
         localhostServer.setDescription("local environment");
 
         Server productionServer = new Server();
-        productionServer.setUrl("https://news.ru");
+        productionServer.setUrl("https://news.altacod.ru");
         productionServer.setDescription("Production environment");
 
         Contact contact = new Contact();
         contact.setName("Савкин Сергей");
-        contact.setEmail("savkin.sergey@yandex.ru");
+        contact.setEmail("savkin@altacod.ru");
         contact.setUrl("https://altacod.ru");
 
         License mitLicense = new License().name("GNU AGPLv3")
@@ -35,7 +35,7 @@ public class OpenApiConfiguration {
                 .version("1.0")
                 .contact(contact)
                 .description("API для ведения новостей и комментариев")
-                .termsOfService("http://some.terms.url")
+                .termsOfService("https://terms-news.altacod.ru")
                 .license(mitLicense);
 
         return new OpenAPI().info(info).servers(List.of(localhostServer, productionServer));

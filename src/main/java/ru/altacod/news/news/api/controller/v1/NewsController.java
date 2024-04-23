@@ -66,6 +66,20 @@ public class NewsController {
         );
     }
 
+    @Operation(
+            summary = "Создать новость",
+            description = "Создать новую новость",
+            tags = {"news"}
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    content = {
+                            @Content(schema = @Schema(implementation = NewsResponse.class), mediaType = "application/json")
+                    }
+            ),
+    }
+    )
     @PostMapping
     public ResponseEntity<NewsResponse> create(@RequestBody @Valid UpsertNewsRequest request) {
         News newNews = newsService.save(newsMapper.requestToNews(request));
@@ -74,6 +88,26 @@ public class NewsController {
                 .body(newsMapper.newsToResponse(newNews));
     }
 
+    @Operation(
+            summary = "Изменить новость по ID",
+            description = "Изменить новость по ID. Возвращает ID, текст измененной новости и комментарии к ней",
+            tags = {"news", "id"}
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    content = {
+                            @Content(schema = @Schema(implementation = NewsResponse.class), mediaType = "application/json")
+                    }
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    content = {
+                            @Content(schema = @Schema(implementation = ErrorResponse.class), mediaType = "application/json")
+                    }
+            )
+    }
+    )
     @PutMapping("/{id}")
     public ResponseEntity<NewsResponse> update(@PathVariable("id") Long newsId,
                                                @RequestBody UpsertNewsRequest request) {
