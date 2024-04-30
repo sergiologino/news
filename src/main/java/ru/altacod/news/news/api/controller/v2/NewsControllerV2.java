@@ -17,6 +17,7 @@ import ru.altacod.news.news.api.model.NewsResponse;
 import ru.altacod.news.news.api.model.UpsertNewsRequest;
 import ru.altacod.news.news.mapper.v2.NewsMapperV2;
 import ru.altacod.news.news.model.News;
+import ru.altacod.news.news.model.NewsFilter;
 import ru.altacod.news.news.service.NewsService;
 
 @RestController
@@ -28,6 +29,16 @@ public class NewsControllerV2 {
     private final NewsService dbNewsService;
 
     private final NewsMapperV2 newsMapper;
+
+
+    @GetMapping("/filter")
+    public ResponseEntity<NewsListResponse> filterBy(NewsFilter filter) {
+        return ResponseEntity.ok(
+                newsMapper.newsListToNewsResponseList(dbNewsService.filterBy(
+                        filter
+                ))
+        );
+    }
 
     @Operation(
             summary = "Получить все новости",

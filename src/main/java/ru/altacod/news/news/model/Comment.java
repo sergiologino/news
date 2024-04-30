@@ -19,7 +19,6 @@ import java.time.Instant;
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "comment_id")
     private Long id;
 
     @Column(name = "content")
@@ -35,8 +34,8 @@ public class Comment {
     private Instant updateAt;
 
     @ManyToOne
-    @JoinColumn(name = "news_id")
-    @ToString.Exclude
+//    @JoinColumn(name = "news_id")
+//    @ToString.Exclude
     private News news;
 
 }
