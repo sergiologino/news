@@ -3,7 +3,7 @@ package ru.altacod.news.news.mapper.v2;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
-import ru.altacod.news.news.api.model.NewsListResponse;
+import ru.altacod.news.news.api.model.NewsForListResponse;
 import ru.altacod.news.news.api.model.NewsResponse;
 import ru.altacod.news.news.api.model.UpsertNewsRequest;
 import ru.altacod.news.news.model.News;
@@ -21,10 +21,27 @@ public interface NewsMapperV2 {
 
     NewsResponse newsToResponse(News news);
 
-    default NewsListResponse newsListToNewsResponseList(List<News> news) {
-        NewsListResponse response = new NewsListResponse();
-        response.setNews(news.stream()
-                .map(this::newsToResponse).collect(Collectors.toList()));
+    public default NewsForListResponse newsForListToResponse(News news) {
+        if (news == null) {
+            return null;
+        }
+
+        NewsForListResponse newsForListResponse = new NewsForListResponse();
+
+        newsForListResponse.setId(news.getId());
+        newsForListResponse.setName(news.getName());
+        newsForListResponse.setDescription(news.getDescription());
+        newsForListResponse.setUserId(news.getUserId());
+        newsForListResponse.setCategoryId(news.getCategoryId());
+        newsForListResponse.setCommentQuantity(news.getComments().size());
+
+        return newsForListResponse;
+    }
+
+    default NewsForListResponse newsListToNewsResponseList(List<News> news) {
+        NewsForListResponse response = new NewsForListResponse();
+        response.setNews(news.stream().map(this::newsForListToResponse).collect(Collectors.toList()));
         return response;
     }
+
 }

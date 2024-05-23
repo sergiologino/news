@@ -12,7 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.altacod.news.news.api.model.ErrorResponse;
-import ru.altacod.news.news.api.model.NewsListResponse;
+import ru.altacod.news.news.api.model.NewsForListResponse;
 import ru.altacod.news.news.api.model.NewsResponse;
 import ru.altacod.news.news.api.model.UpsertNewsRequest;
 import ru.altacod.news.news.mapper.v2.NewsMapperV2;
@@ -32,7 +32,7 @@ public class NewsControllerV2 {
 
 
     @GetMapping("/filter")
-    public ResponseEntity<NewsListResponse> filterBy(NewsFilter filter) {
+    public ResponseEntity<NewsForListResponse> filterBy(NewsFilter filter) {
         return ResponseEntity.ok(
                 newsMapper.newsListToNewsResponseList(dbNewsService.filterBy(
                         filter
@@ -46,7 +46,7 @@ public class NewsControllerV2 {
             tags = {"news"}
     )
     @GetMapping
-    public ResponseEntity<NewsListResponse> findAll() {
+    public ResponseEntity<NewsForListResponse> findAll() {
         return ResponseEntity.ok(
                 newsMapper.newsListToNewsResponseList(
                         dbNewsService.findAll()
