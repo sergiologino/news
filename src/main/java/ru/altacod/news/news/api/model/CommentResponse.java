@@ -2,6 +2,8 @@ package ru.altacod.news.news.api.model;
 
 import lombok.Data;
 
+import java.time.Instant;
+
 @Data
 public class CommentResponse {
     private Long id;
@@ -9,5 +11,9 @@ public class CommentResponse {
     private String content;
 
     private Long userId;
+
+    private Instant createAt;
+
+    private Instant updateAt;
 
 }

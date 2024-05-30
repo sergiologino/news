@@ -20,7 +20,7 @@ public class NewsForListResponse {
 
     private Integer CommentQuantity;
 
+    public void setNews(List<NewsForListResponse> collect) {
 
-    public void setNews(List<NewsResponse> collect) {
     }
 }

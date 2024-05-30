@@ -20,6 +20,8 @@ import ru.altacod.news.news.model.News;
 import ru.altacod.news.news.model.NewsFilter;
 import ru.altacod.news.news.service.NewsService;
 
+import java.util.List;
+
 @RestController
 @Tag(name = "3. Новости")
 @RequestMapping("/api/v2/news")
@@ -31,13 +33,20 @@ public class NewsControllerV2 {
     private final NewsMapperV2 newsMapper;
 
 
+    @Operation(
+            summary = "Получить новости по фильтру",
+            description = "Возвращает все новости по фильтру с количеством комментариев к каждой новости",
+            tags = {"news","filter"}
+    )
     @GetMapping("/filter")
-    public ResponseEntity<NewsForListResponse> filterBy(NewsFilter filter) {
-        return ResponseEntity.ok(
-                newsMapper.newsListToNewsResponseList(dbNewsService.filterBy(
-                        filter
-                ))
-        );
+    public ResponseEntity<List<NewsForListResponse>> filterBy(NewsFilter filter) {
+        List<News> newsList =dbNewsService.filterBy(filter);
+        List<NewsForListResponse> responseList = newsMapper.newsListToNewsResponseList(newsList);
+        return ResponseEntity.ok(responseList);
+//                newsMapper.newsListToNewsResponseList(dbNewsService.filterBy(
+//                        filter
+//                ))
+
     }
 
     @Operation(
@@ -46,12 +55,14 @@ public class NewsControllerV2 {
             tags = {"news"}
     )
     @GetMapping
-    public ResponseEntity<NewsForListResponse> findAll() {
-        return ResponseEntity.ok(
-                newsMapper.newsListToNewsResponseList(
-                        dbNewsService.findAll()
-                )
-        );
+    public ResponseEntity<List<NewsForListResponse>> findAll() {
+        List<News> newsList=dbNewsService.findAll();
+        List<NewsForListResponse> responseList=newsMapper.newsListToNewsResponseList(newsList);
+        return ResponseEntity.ok(responseList);
+//                newsMapper.newsListToNewsResponseList(
+//                        dbNewsService.findAll()
+//                )
+//        );
     }
 
     @Operation(

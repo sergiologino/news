@@ -21,7 +21,7 @@ public interface NewsMapperV2 {
 
     NewsResponse newsToResponse(News news);
 
-    public default NewsForListResponse newsForListToResponse(News news) {
+    default NewsForListResponse newsForListToResponse(News news) {
         if (news == null) {
             return null;
         }
@@ -38,10 +38,11 @@ public interface NewsMapperV2 {
         return newsForListResponse;
     }
 
-    default NewsForListResponse newsListToNewsResponseList(List<News> news) {
-        NewsForListResponse response = new NewsForListResponse();
-        response.setNews(news.stream().map(this::newsForListToResponse).collect(Collectors.toList()));
-        return response;
+    default List<NewsForListResponse> newsListToNewsResponseList(List<News> news) {
+        if (news == null) {
+            return null;
+        }
+        return news.stream().map(this::newsForListToResponse).collect(Collectors.toList());
     }
 
 }
