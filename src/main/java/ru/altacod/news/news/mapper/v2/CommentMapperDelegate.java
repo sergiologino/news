@@ -20,9 +20,4 @@ public abstract class CommentMapperDelegate implements CommentMapperV2 {
         return comment;
     }
 
-    public Comment requestToOrder(Long commentId, UpsertCommentRequest request) {
-        Comment comment = requestToComment(request);
-        comment.setId(commentId);
-        return comment;
-    }
 }

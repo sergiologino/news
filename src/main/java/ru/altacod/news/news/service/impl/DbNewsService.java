@@ -1,10 +1,13 @@
 package ru.altacod.news.news.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import ru.altacod.news.news.exception.EntityNotFoundException;
 import ru.altacod.news.news.model.News;
+import ru.altacod.news.news.model.NewsFilter;
 import ru.altacod.news.news.repository.DbNewsRepository;
+import ru.altacod.news.news.repository.NewsSpecification;
 import ru.altacod.news.news.service.NewsService;
 import ru.altacod.news.news.utils.BeanUtils;
 
@@ -16,6 +19,14 @@ import java.util.List;
 public class DbNewsService implements NewsService {
 
     private final DbNewsRepository newsRepository;
+
+    @Override
+    public List<News> filterBy(NewsFilter filter) {
+        return newsRepository.findAll(NewsSpecification.withFilter(filter),
+                PageRequest.of(
+                        filter.getPageNumber(), filter.getPageSize()
+                )).getContent();
+    }
 
     @Override
     public List<News> findAll() {

@@ -1,27 +1,25 @@
 package ru.altacod.news.news.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity
+@ToString
+@Entity(name = "app_user")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
+    @Column
     private Long id;
 
-    @Column(name = "user_name")
+    @Column
     private String name;
 
-    @Column(name = "user_password")
+    @Column
     private String password;
 
 }
