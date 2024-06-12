@@ -31,6 +31,11 @@ public class NewsControllerV2 {
     private final NewsMapperV2 newsMapper;
 
 
+    @Operation(
+            summary = "Получить новости по фильтру",
+            description = "Возвращает новости с фильтрацией по категории и пользователю ",
+            tags = {"news"}
+    )
     @GetMapping("/filter")
     public ResponseEntity<NewsListResponse> filterBy(NewsFilter filter) {
         return ResponseEntity.ok(
