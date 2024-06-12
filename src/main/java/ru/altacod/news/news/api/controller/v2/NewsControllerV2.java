@@ -35,8 +35,8 @@ public class NewsControllerV2 {
 
     @Operation(
             summary = "Получить новости по фильтру",
-            description = "Возвращает все новости по фильтру с количеством комментариев к каждой новости",
-            tags = {"news","filter"}
+            description = "Возвращает все новости по фильтру катеории м юзера с количеством комментариев к каждой новости",
+            tags = {"news", "filter"}
     )
     @GetMapping("/filter")
     public ResponseEntity<List<NewsForListResponse>> filterBy(NewsFilter filter) {
@@ -51,7 +51,7 @@ public class NewsControllerV2 {
 
     @Operation(
             summary = "Получить все новости",
-            description = "Возвращает все новости без комментариев",
+            description = "Возвращает все новости с количеством комментариев",
             tags = {"news"}
     )
     @GetMapping
