@@ -14,4 +14,5 @@ public class NewsFilter {
     private Long categoryId;
 
     private Long userId;
+
 }
