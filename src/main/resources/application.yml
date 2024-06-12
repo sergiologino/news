@@ -3,14 +3,20 @@ spring:
     allow-circular-references: true
   jpa:
     generate-ddl: true
+    open-in-view: false
   datasource:
     url: jdbc:postgresql://localhost:5432/news_db
     username: postgres
     password: postgres
-    hikari:
+#    hikari:
 #      schema: news
-      #      connection-ini-sql: CREATE SCHEMA IF NOT EXISTS news
-      connection-timeout: 10000
+#      connection-init-sql: CREATE SCHEMA IF NOT EXISTS news
+#      connection-timeout: 10000
+# Если снять комментарии то выдает ошибку:
+#  Failed to load driver class org.postgresql.
+#  Driver in either of HikariConfig class loader or Thread context classloader
+server:
+  port: 8081
 
 
 springdoc:
