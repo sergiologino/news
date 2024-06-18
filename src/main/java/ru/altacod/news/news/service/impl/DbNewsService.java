@@ -37,7 +37,7 @@ public class DbNewsService implements NewsService {
     public News findById(Long id) {
         return newsRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(MessageFormat.format(
-                        "Клиент с ID {0} не найден ", id)));
+                        "Новость с ID {0} не найдена ", id)));
     }
 
     @Override

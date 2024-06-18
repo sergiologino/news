@@ -1,10 +1,12 @@
 package ru.altacod.news.news.model;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class NewsFilter {
 
     private Integer pageSize;
