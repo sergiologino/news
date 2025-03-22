@@ -1,0 +1,77 @@
+{
+  "info": {
+    "_postman_id": "abcdef01-2345-6789-abcd-ef0123456789",
+    "name": "Новости - Basic Auth Test",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Получить всех пользователей (только для ADMIN)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/v1/user",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "user"]
+        },
+        "auth": {
+          "type": "basic",
+          "basic": [
+            { "key": "username", "value": "admin", "type": "string" },
+            { "key": "password", "value": "adminpass", "type": "string" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "2. Создать новость",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/v1/news",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "news"]
+        },
+        "auth": {
+          "type": "basic",
+          "basic": [
+            { "key": "username", "value": "user1", "type": "string" },
+            { "key": "password", "value": "userpass", "type": "string" }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Test News\",\n  \"description\": \"Test content\",\n  \"categoryId\": 1\n}"
+        }
+      }
+    },
+    {
+      "name": "3. Получить список категорий",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/api/v1/category",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "v1", "category"]
+        },
+        "auth": {
+          "type": "basic",
+          "basic": [
+            { "key": "username", "value": "user1", "type": "string" },
+            { "key": "password", "value": "userpass", "type": "string" }
+          ]
+        }
+      }
+    }
+  ]
+}
