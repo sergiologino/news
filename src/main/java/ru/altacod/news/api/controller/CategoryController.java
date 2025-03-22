@@ -1,4 +1,4 @@
-package ru.altacod.news.api.controller.v1;
+package ru.altacod.news.api.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.altacod.news.api.model.CategoryListResponse;
 import ru.altacod.news.api.model.CategoryResponse;
 import ru.altacod.news.api.model.UpsertCategoryRequest;
-import ru.altacod.news.mapper.v1.CategoryMapper;
+import ru.altacod.news.mapper.CategoryMapper;
 import ru.altacod.news.model.Category;
 import ru.altacod.news.service.CategoryService;
 

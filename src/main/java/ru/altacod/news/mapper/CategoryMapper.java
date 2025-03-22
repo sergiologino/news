@@ -1,4 +1,4 @@
-package ru.altacod.news.mapper.v1;
+package ru.altacod.news.mapper;
 
 
 import lombok.RequiredArgsConstructor;
