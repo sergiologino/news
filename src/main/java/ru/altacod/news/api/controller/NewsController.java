@@ -1,4 +1,4 @@
-package ru.altacod.news.api.controller.v1;
+package ru.altacod.news.api.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.altacod.news.api.model.NewsListResponse;
 import ru.altacod.news.api.model.NewsResponse;
 import ru.altacod.news.api.model.UpsertNewsRequest;
-import ru.altacod.news.mapper.v1.NewsMapper;
+import ru.altacod.news.mapper.NewsMapper;
 import ru.altacod.news.model.News;
 import ru.altacod.news.model.User;
 import ru.altacod.news.security.annotations.CanDeleteNews;

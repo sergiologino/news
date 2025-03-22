@@ -1,4 +1,4 @@
-package ru.altacod.news.api.controller.v1;
+package ru.altacod.news.api.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.altacod.news.api.model.CommentListResponse;
 import ru.altacod.news.api.model.CommentResponse;
 import ru.altacod.news.api.model.UpsertCommentRequest;
-import ru.altacod.news.mapper.v1.CommentMapper;
+import ru.altacod.news.mapper.CommentMapper;
 import ru.altacod.news.model.Comment;
 import ru.altacod.news.model.User;
 import ru.altacod.news.security.annotations.CanDeleteComment;

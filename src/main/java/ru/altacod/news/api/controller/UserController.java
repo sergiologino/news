@@ -1,4 +1,4 @@
-package ru.altacod.news.api.controller.v1;
+package ru.altacod.news.api.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.altacod.news.api.model.UpsertUserRequest;
 import ru.altacod.news.api.model.UserListResponse;
 import ru.altacod.news.api.model.UserResponse;
-import ru.altacod.news.mapper.v1.UserMapper;
+import ru.altacod.news.mapper.UserMapper;
 import ru.altacod.news.model.User;
 import ru.altacod.news.security.annotations.CanAccessUser;
 import ru.altacod.news.security.annotations.CanDeleteUser;
